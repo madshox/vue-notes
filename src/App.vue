@@ -62,6 +62,7 @@
                 <line x1="3" y1="18" x2="3" y2="18"></line>
               </svg>
             </div>
+
           </div>
 
           <!-- note list  -->
@@ -93,22 +94,26 @@ export default {
       grid: true,
       note: {
         title: "",
+        priority: "",
         descr: "",
       },
       notes: [
         {
           title: "First Note",
           descr: "Description for first note",
+          priority: "standart",
           date: new Date(Date.now()).toLocaleString(),
         },
         {
           title: "Second Note",
           descr: "Description for second note",
+          priority: "important",
           date: new Date(Date.now()).toLocaleString(),
         },
         {
           title: "Third Note",
           descr: "Description for third note",
+          priority: "very-important",
           date: new Date(Date.now()).toLocaleString(),
         },
       ],
@@ -135,7 +140,7 @@ export default {
   methods: {
     addNote() {
       // console.log(this.note);
-      let { title, descr } = this.note;
+      let { title, descr, priority } = this.note;
 
       if (title == "") {
         this.message = "Title can't be blank";
@@ -145,11 +150,13 @@ export default {
       this.notes.push({
         title,
         descr,
+        priority,
         date: new Date(Date.now()).toLocaleString(),
       });
 
       this.note.title = "";
       this.note.descr = "";
+      this.note.priority = "";
 
       this.message = null;
     },

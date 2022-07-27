@@ -1,6 +1,6 @@
 <template>
   <div class="notes">
-    <div class="note" :class="{ full: !grid }" v-for="(note, index) in notes" :key="index">
+    <div class="note" :class="{ full: !grid, very_important: note.priority == 'very-important',  important: note.priority == 'important',}" v-for="(note, index) in notes" :key="index">
       <div class="note-header">
         <p>{{ note.title }}</p>
         <p style="cursor: pointer" @click="removeNote(index)">x</p>
@@ -56,6 +56,12 @@ export default {
   &.full {
     width: 100%;
     text-align: center;
+  }
+  &.very_important {
+    background-color: rgba(255, 0, 0, 0.419);
+  }
+  &.important {
+    background-color: rgba(242, 255, 0, 0.419);
   }
 }
 .note-header {
