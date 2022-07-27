@@ -3,6 +3,8 @@
     <div class="wrapper-content">
       <section>
         <div class="container">
+
+          <!-- Title -->
           <h1>{{ title }}</h1>
 
           <!-- message -->
@@ -12,7 +14,7 @@
           <newNote :note="note" @addNote="addNote"/>
 
           <!-- note list  -->
-          <notes :notes="notes"/>
+          <notes :notes="notes" @remove="removeNote"/>
           
         </div>
       </section>
@@ -79,6 +81,9 @@ export default {
 
       this.message = null;
     },
+    removeNote(index) {
+      this.notes.splice(index, 1);
+    }
   },
 };
 </script>
