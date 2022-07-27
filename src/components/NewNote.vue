@@ -7,7 +7,7 @@
     <label for="">Description</label>
     <textarea v-model="note.descr"></textarea>
 
-    <button class="btn btnPrimary" @click="addNote">New note</button>
+    <button class="btn btnPrimary" @click="addNote" style="margin-top: 36px">New note</button>
   </div>
 </template>
 
