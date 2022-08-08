@@ -14,10 +14,11 @@
             <h1>{{ title }}</h1>
 
             <!-- Search -->
-            <search 
-            :value="search" 
-            placeholder="Find your note" 
-            @search="search = $event"/>
+            <search
+              :value="search"
+              placeholder="Find your note"
+              @search="search = $event"
+            />
 
             <!-- icons controls -->
             <div class="icons">
@@ -62,7 +63,6 @@
                 <line x1="3" y1="18" x2="3" y2="18"></line>
               </svg>
             </div>
-
           </div>
 
           <!-- note list  -->
@@ -97,45 +97,30 @@ export default {
         priority: "",
         descr: "",
       },
-      notes: [
-        {
-          title: "First Note",
-          descr: "Description for first note",
-          priority: "standart",
-          date: new Date(Date.now()).toLocaleString(),
-        },
-        {
-          title: "Second Note",
-          descr: "Description for second note",
-          priority: "important",
-          date: new Date(Date.now()).toLocaleString(),
-        },
-        {
-          title: "Third Note",
-          descr: "Description for third note",
-          priority: "very-important",
-          date: new Date(Date.now()).toLocaleString(),
-        },
-      ],
+      notes: this.$store.state.notes
     };
   },
+  mounted() {
+    // console.log(this.$store);
+    // this.$store.dispatch("GET_TODO");
+  },
   computed: {
-    notesFilter () {
+    notesFilter() {
       let array = this.notes,
-          search = this.search
+        search = this.search;
 
-      if(!search) return array;
+      if (!search) return array;
       // Small
       search = search.trim().toLowerCase();
       //Filter
-      array = array.filter(function(item) {
-        if(item.title.toLowerCase().indexOf(search) !== -1) {
+      array = array.filter(function (item) {
+        if (item.title.toLowerCase().indexOf(search) !== -1) {
           return item;
         }
-      })
+      });
       // Error
       return array;
-    }
+    },
   },
   methods: {
     addNote() {

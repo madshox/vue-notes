@@ -1,6 +1,15 @@
 <template>
   <div class="notes">
-    <div class="note" :class="{ full: !grid, very_important: note.priority == 'very-important',  important: note.priority == 'important',}" v-for="(note, index) in notes" :key="index">
+    <div
+      class="note"
+      :class="{
+        full: !grid,
+        very_important: note.priority == 'very-important',
+        important: note.priority == 'important',
+      }"
+      v-for="(note, index) in notes"
+      :key="index"
+    >
       <div class="note-header">
         <p>{{ note.title }}</p>
         <p style="cursor: pointer" @click="removeNote(index)">x</p>
@@ -15,15 +24,24 @@
 
 <script>
 export default {
+  data () {
+    return {
+      notes: null
+    }
+  },
   props: {
-    notes: {
-      type: Array,
-      required: true,
-    },
+    // notes: {
+    //   type: Array,
+    //   required: true,
+    // },
     grid: {
       type: Boolean,
       required: true,
     },
+  },
+  mounted () {
+    // console.log(this.$store.state.notes);
+    this.notes = this.$store.state.notes
   },
   methods: {
     removeNote(index) {
